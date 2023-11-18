@@ -1,18 +1,18 @@
 module reg_file(
     input logic write_en, clk, rst,
-    input logic [2:0] reg_no, 
-    input logic[7:0] val, 
-    output logic [7:0] dout
+    input logic [3:0] reg_no, 
+    input logic [3:0] val, 
+    output logic [3:0] dout
     );
-    logic [7:0] r0, r1, r2, eflags;
-    always_ff @(posedge clk) begin
+    logic [3:0] r0, r1, r2, eflags;
+    always_ff @(negedge clk) begin
         if(rst) begin
             r0 <= 0;
             r1 <= 0;
             r2 <= 0;
             eflags <= 0;
         end
-        if(write_en) begin
+        else if(write_en) begin
             case(reg_no)
                 0: r0 <= val;
                 1: r1 <= val;
