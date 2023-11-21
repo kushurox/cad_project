@@ -19,6 +19,9 @@ module alu(input logic [3:0] opcode, op1, op2, output logic [3:0] eflags, dout);
             4'b0001: begin dout = add_out; eflags = fladd_out; end
             4'b0010: begin dout = mul_out; eflags = 0; end
             4'b0011: begin dout = 0; eflags = flcmp_out; end
+            4'b1001: begin dout = 0; eflags = flcmp_out; end // computing cmp even if its je, jg, jl instruction
+            4'b1010: begin dout = 0; eflags = flcmp_out; end
+            4'b1011: begin dout = 0; eflags = flcmp_out; end
             4'b0100: dout = rsh_out;
             4'b0101: dout = lsh_out;
             default: dout = 0;
